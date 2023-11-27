@@ -12,6 +12,16 @@ def janken
   jankens = ["グー", "チョキ", "パー"]
   directions = ["上", "下", "左", "右"]
 
+  if (player_hand == 3)
+    puts "あなたは勝負に背を向けて逃げ出しました..."
+    return false
+  end
+
+  if (player_hand != 0) && (player_hand != 1) && (player_hand != 2) && (player_hand != 3)
+    puts "0~3の数値を入力してください"
+    return false
+  end
+
   puts "ポン！"
   puts "--------------------------------------------"
   puts "あなたは#{jankens[player_hand]}を出しました。"
@@ -27,6 +37,11 @@ def janken
 
     player_direction = gets.to_i
     enemy_direction = rand(4)
+
+    if (player_direction != 0) && (player_direction != 1) && (player_direction != 2) && (player_direction != 3)
+      puts "0~3の数値を入力してください"
+      return false
+    end
 
     puts "ほい！"
     puts "--------------------------------------------"
