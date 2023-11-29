@@ -10,28 +10,28 @@ memo_type = gets.to_i #ユーザーの入力値を取得し、数字へ変換し
 if memo_type == 1
   puts "新規でメモを作成します。拡張子を除いたファイル名を入力してください。"
   #ターミナルに入力したファイル名をfile_nameに格納
-  file_name = gets.chomp
+  file_name = gets.chomp.to_s
 
   puts "メモしたい内容を入力してください。"
   puts "Ctrl + Dで保存します。"
 
   #指定したファイル名のcsvを新規作成し、memo_contentに標準入力の内容を格納、csvにも格納する。
   CSV.open("#{file_name}.csv", "w") do |csv|
-    memo_content = readlines(chomp:true)
+    memo_content = $stdin.readlines(chomp:true)
     csv << memo_content
   end
 
 elsif memo_type == 2 
   puts "既存のファイルにメモします。拡張子を除いて既存のファイル名を入力してください"
   #ターミナルに入力したファイル名をfile_nameに格納
-  file_name = gets.chomp
+  file_name = gets.chomp.to_s
 
   puts "メモしたい内容を入力してください。"
   puts "Ctrl + Dで保存します。"
 
   #指定したファイル名のcsvを編集モードで開き、memo_contentに入力内容を格納、csvにも格納する。
   CSV.open("#{file_name}.csv", "a") do |csv|
-    memo_content = readlines(chomp:true)
+    memo_content = $stdin.readlines(chomp:true)
     csv << memo_content
   end
   
